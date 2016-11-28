@@ -14,7 +14,7 @@
     <?php include 'tags\navbar.php'; ?>
 
     <div id="email" class="support">
-        <h5>Fragen & Support</h5>
+        <h1>Fragen & Support</h1>
         <p>Wenn Sie Fragen haben oder unsere Hilfe brauchen, schreiben Sie uns eine Email an:</p>
         <a href="mailto:support@bikesforyou.at">support@bikesforyou.at</a>
     </div>
