@@ -3,14 +3,14 @@
 
 <head>
 
-    <?php include 'tags\header.php'; ?>
+    <?php include 'tags/header.php'; ?>
 
-    <title>Welcome to BikesForYou</title>
+    <title>BikesForYou</title>
 
 </head>
 
 <body>
-<?php include 'tags\navbar.php'; ?>
+<?php include 'tags/navbar.php'; ?>
 
 </body>
 

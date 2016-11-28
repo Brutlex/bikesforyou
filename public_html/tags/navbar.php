@@ -6,9 +6,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#myPage">Logo</a>
+            <a class="navbar-brand" id ="logo" href="#myPage">LOGO</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
+
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#home">HOME</a></li>
                 <li><a href="#login">LOG IN</a></li>
