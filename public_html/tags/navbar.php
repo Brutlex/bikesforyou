@@ -14,7 +14,7 @@
                 <li><a href="#login">LOG IN</a></li>
                 <li><a href="#signup">SIGN UP</a></li>
                 <li><a href="#about">ABOUT</a></li>
-                <li><a href="#contact">CONTACT</a></li>
+                <li><a href="contact.php">CONTACT</a></li>
             </ul>
         </div>
     </div>
