@@ -3,15 +3,17 @@
 
 <head>
 
-    <?php include 'tags/header.php'; ?>
+    <?php include_once 'tags/header.php'; ?>
 
     <title>BikesForYou</title>
 
 </head>
 
 <body>
-<?php include 'tags/navbar.php'; ?>
-
+    <?php include_once("analyticstracking.php") ?>
+    <div>
+        <?php include_once 'tags/navbar.php'; ?>
+    </div>
 </body>
 
 </html>

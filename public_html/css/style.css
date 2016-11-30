@@ -1,18 +1,27 @@
+body {
+    font: 400 15px Lato, sans-serif;
+    line-height: 1.8;
+    color: #818181;
+    padding-top: 60px;
+}
+
 .container-fluid {
     padding: 60px 50px;
 }
+
 .navbar {
     margin-bottom: 0;
     background-color: #3385ff;
     z-index: 9999;
     border: 0;
-    font-size: 100% !important;
+    font-size: 15px !important;
     line-height: 1.42857143 !important;
     letter-spacing: 5px;
     border-radius: 0;
     font-family: Planer-Regular, sans-serif;
     font-weight: bolder;
 }
+
 .navbar li a, .navbar .navbar-brand {
     color: #fff !important;
     line-height: 60px;
@@ -20,15 +29,26 @@
     padding-top: 0;
 
 }
+
 .navbar-nav li a:hover, .navbar-nav li.active a {
     color: #3385ff !important;
     background-color: #fff !important;
 }
+
 .navbar-default .navbar-toggle {
     border-color: transparent;
     color: #fff !important;
 }
+
 .navbar-brand {
     height: 100%;
 }
-@font-face { font-family: Planer-Regular; src: url('Planer-Regular.otf');}
+
+@font-face { font-family: Planer-Regular; src: url('Planer-Regular.otf'); }
+
+#bg {
+    height: 500px;
+    width: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}

@@ -10,7 +10,9 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
 
+
             <ul class="nav navbar-nav navbar-right">
+
                 <li><a href="index.php">HOME</a></li>
                 <li><a href="#login">LOG IN</a></li>
                 <li><a href="#signup">SIGN UP</a></li>
