@@ -52,3 +52,20 @@ body {
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
+#imaginary_container{
+    margin-top:10%;
+}
+.stylish-input-group .input-group-addon{
+    background: white !important;
+    border-color:#3385ff;
+    color:#3385ff;
+}
+.stylish-input-group .form-control{
+    border-right:0;
+    box-shadow:0 0 0;
+    border-color:#3385ff;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}

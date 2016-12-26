@@ -9,7 +9,7 @@
 
 </head>
 
-<body>
+<body id="contact">
     <?php include_once("analyticstracking.php") ?>
     <div>
         <?php include_once 'tags/navbar.php'; ?>

@@ -14,9 +14,9 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <li><a href="index.php">HOME</a></li>
-                <li><a href="#login">LOG IN</a></li>
-                <li><a href="#signup">SIGN UP</a></li>
-                <li><a href="#about">ABOUT</a></li>
+                <li><a href="login.php">LOG IN</a></li>
+                <li><a href="register.php">SIGN UP</a></li>
+                <li><a href="about.php">ABOUT</a></li>
                 <li><a href="contact.php">CONTACT</a></li>
             </ul>
         </div>

@@ -7,3 +7,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="img/favicon.ico" rel="icon" type="image/x-icon" />
 <link rel="stylesheet" href="css/style.css">
+<script src="js/core.js"></script>
+
+
