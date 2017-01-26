@@ -3,7 +3,7 @@
 
 <head>
 
-    <?php include_once 'tags/header.php'; ?>
+    <?php require_once 'tags/header.php'; ?>
 
     <title>Contact</title>
 
@@ -12,7 +12,7 @@
 <body id="contact">
     <?php include_once("analyticstracking.php") ?>
     <div>
-        <?php include_once 'tags/navbar.php'; ?>
+        <?php require_once 'tags/navbar.php'; ?>
     </div>
     <div id="email" class="container-fluid text-center">
         <h1>Fragen & Support</h1>

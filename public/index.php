@@ -3,7 +3,7 @@
 
 <head>
 
-    <?php include_once 'tags/header.php'; ?>
+    <?php require_once 'tags/header.php'; ?>
 
     <title>BikesForYou</title>
 
@@ -12,7 +12,7 @@
 <body id="home">
     <?php include_once("analyticstracking.php") ?>
     <div>
-        <?php include_once 'tags/navbar.php'; ?>
+        <?php require_once 'tags/navbar.php'; ?>
     </div>
     <div class="container">
         <div class="row">
