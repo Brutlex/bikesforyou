@@ -14,7 +14,8 @@
     <div>
         <?php require_once 'tags/navbar.php'; ?>
     </div>
-    <div class="container">
+
+    <div class="container" id="search" >
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
                 <div id="imaginary_container">
