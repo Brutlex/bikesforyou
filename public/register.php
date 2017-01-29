@@ -52,13 +52,25 @@ if(isset($_POST['btn-signup'])) {
      </div>
      ";
     } elseif ($stmt2->rowCount() > 0) {
-        $msg = "
+        $msg_err = "
         <div class='alert alert-danger'>
     <button class='close' data-dismiss='alert'>&times;</button>
      <strong>Username</strong> is already in use. Please choose another one.
      </div>
      ";
-    } else {
+    }
+     elseif ($upass!= $upass2)
+        {
+            $msg_err = "
+        <div class='alert alert-danger'>
+    <button class='close' data-dismiss='alert'>&times;</button>
+     <strong>Passwords</strong> do not match. Please try again.
+     </div>
+     ";
+
+    }
+
+    else {
         if ($reg_user->register($uname, $uemail, $upass, $sex, $firstname, $lastname, $city, $zip, $phone)) {
             /*          $id = $reg_user->lastID();
                         $key = base64_encode($id);
@@ -117,7 +129,9 @@ if(isset($_POST['btn-signup'])) {
             <?php if(isset($msg)) {
                 echo "<script>setTimeout(\"location.href = 'http://www.bikesforyou.at/home';\",5000);</script>";
                 echo $msg;
-
+            }
+            if(isset($msg_err)){
+                echo $msg_err;
             }?>
         <div class="container" id="regform">
 

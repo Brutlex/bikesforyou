@@ -21,7 +21,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <?php require_once 'tags/header.php'; ?>
 
-    <title>About</title>
+    <title>Post</title>
 
 </head>
 

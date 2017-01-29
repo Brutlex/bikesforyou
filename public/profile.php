@@ -20,7 +20,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <?php require_once 'tags/header.php'; ?>
 
-    <title>BikesForYou</title>
+    <title>Profile</title>
 
 </head>
 <body id="members">
