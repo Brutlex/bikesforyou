@@ -66,24 +66,24 @@ class USER
                 {
                     if($userRow['userPass']==$upass)
                     {
-                        $_SESSION['userSession'] = $userRow['userID'];
+                        $_SESSION['userSession'] = $userRow['userId'];
                         return true;
                     }
                     else
                     {
-                        header("Location: index?error");
+                        header("Location: login");
                         exit;
                     }
                 }
                 else
                 {
-                    header("Location: index?inactive");
+                    header("Location: login");
                     exit;
                 }
             }
             else
             {
-                header("Location: index?error");
+                header("Location: login");
                 exit;
             }
         }

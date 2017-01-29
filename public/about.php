@@ -1,3 +1,22 @@
+<?php
+
+require_once 'class.user.php';
+
+$user_login = new USER();
+
+if(isset($_POST['btn-login']))
+{
+    $uemail = trim($_POST['uemail']);
+    $upass = trim($_POST['upass']);
+
+    if($user_login->login($uemail,$upass))
+    {
+        $user_login->redirect('home');
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
