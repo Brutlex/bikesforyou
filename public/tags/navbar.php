@@ -25,7 +25,7 @@
                 </li>
                 <li><a href="../register">SIGN UP</a></li>
                 <li><a href="../about">ABOUT</a></li>
-                <li><a href="../post"">POST</a></li>
+                <li><a href="../post" data-toggle="tooltip" title="Please Log in or Register to post!">POST</a></li>
             </ul>
         </div>
     </div>

@@ -98,6 +98,8 @@ if(isset($_POST['btn-signup'])) {
                   </div>
               ";*/
 
+            $reg_user->login($uemail,$upass);
+
             $msg = "     
                     <div class='alert alert-success'>
                     <button class='close' data-dismiss='alert'>&times;</button>
@@ -142,28 +144,28 @@ if(isset($_POST['btn-signup'])) {
                 <div class="form-group">
                     <label class="col-form-label col-sm-2" for="username">Username:</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="username" placeholder="Enter username" required>
+                        <input type="text" class="form-control" name="username" placeholder="Enter username" pattern=".{5,}" title="Must contain 5 or more characters" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-form-label col-sm-2" for="email">Email:</label>
                     <div class="col-sm-4">
-                        <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+                        <input type="email" class="form-control" name="email" placeholder="Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Please enter a valid email adress" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-form-label col-sm-2" name="pwd">Password:</label>
                     <div class="col-sm-4">
-                        <input type="password" class="form-control" name="pwd" placeholder="Enter password" required>
+                        <input type="password" class="form-control" name="pwd" placeholder="Enter password" pattern=".{6,}" title="Must contain 6 or more characters" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-form-label col-sm-2" name="pwd2">Confirm Password:</label>
                     <div class="col-sm-4">
-                        <input type="password" class="form-control" name="pwd2" placeholder="Confirm password" required>
+                        <input type="password" class="form-control" name="pwd2" placeholder="Confirm password" pattern=".{6,}" title="Must contain 6 or more characters" required>
                     </div>
                 </div>
 
@@ -182,13 +184,13 @@ if(isset($_POST['btn-signup'])) {
                     <div class="form-group">
                         <label class="col-form-label col-sm-2" for="firstName">First Name:</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" name="firstName" placeholder="Enter first name" required>
+                            <input type="text" class="form-control" name="firstName" placeholder="Enter first name" pattern="[A-Za-z]{2,}" title="Invalid input. Letters only." required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-form-label col-sm-2" for="lastName">Last Name:</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" name="lastName" placeholder="Enter last name" required>
+                            <input type="text" class="form-control" name="lastName" placeholder="Enter last name" pattern="[A-Za-z]{2,}" title="Invalid input. Letters only." required>
                         </div>
                     </div>
                 </div>
@@ -199,14 +201,14 @@ if(isset($_POST['btn-signup'])) {
                       <div class="form-group">
                         <label class="col-form-label col-sm-2" for="city">City:</label>
                           <div class="col-sm-3">
-                             <input type="text" class="form-control" name="city" placeholder="Enter city">
+                             <input type="text" class="form-control" name="city" placeholder="Enter city" pattern="[A-Za-z]{2,}" title="Invalid input. Letters only.">
                           </div>
                      </div>
 
                         <div class="form-group">
                             <label class="col-form-label col-sm-2" for="zip">ZIP:</label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" name="zip" placeholder="Enter ZIP code">
+                                <input type="text" class="form-control" name="zip" placeholder="Enter ZIP code" pattern="[0-9]{2,}" title="Invalid input. Numbers only.">
                             </div>
                         </div>
 
@@ -214,7 +216,7 @@ if(isset($_POST['btn-signup'])) {
                         <div class="form-group">
                             <label class="col-form-label col-sm-2" for="phone">Phone number:</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" name="phone" placeholder="Enter phone number">
+                                <input type="text" class="form-control" name="phone" placeholder="Enter phone number" pattern="[0-9]{6,32}" title="Invalid input. Numbers only. Replace '+' with '00'">
                             </div>
                         </div>
                     </div>

@@ -30,8 +30,8 @@ class USER
     {
         try
         {
-            $stmt = $this->conn->prepare("INSERT INTO users(userName,userEmail,userPass,sex,firstName,lastName,city,zip,phoneNumber) 
-                                                VALUES(:user_name, :user_mail, :user_pass, :sex, :first_name, :last_name, :city, :zip, :phone_number)");
+            $stmt = $this->conn->prepare("INSERT INTO users(userName,userEmail,userPass,sex,firstName,lastName,city,zip,phoneNumber,registrationDate) 
+                                                VALUES(:user_name, :user_mail, :user_pass, :sex, :first_name, :last_name, :city, :zip, :phone_number, NOW())");
             $stmt->bindparam(":user_name",$uname);
             $stmt->bindparam(":user_mail",$uemail);
             $stmt->bindparam(":user_pass",$upass );
