@@ -12,6 +12,28 @@ $stmt = $user_home->runQuery("SELECT * FROM users WHERE userId=:uid");
 $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+if(isset($_POST['postIt'])) {
+    $userId = $_SESSION['userSession'];
+    $articleName = $_POST['articleName'];
+    $articleDescription = $_POST['articleDescription'];
+    $category = trim($_POST['category']);
+    $material = trim($_POST['material']);
+    $frameSize = trim($_POST['frameSize']);
+    $price = $_POST['price'];
+    $brand1 = trim($_POST['brand']);
+    $colour = trim($_POST['colour']);
+
+
+    if ($user_home->post($userId, $articleName, $articleDescription, $category, $material, $frameSize, $price, $brand1, $colour)) {
+
+        $msg = "     
+                    <div class='alert alert-success'>
+                    <button class='close' data-dismiss='alert'>&times;</button>
+                    <strong>Success!</strong>  Your post has been created. 
+                    </div>
+                    ";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +59,9 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     <div class="col-md-6">
 
     <form class="form-horizontal" method="post">
+    <?php if(isset($msg)) {
+        echo $msg;
+    } ?>
             <h2><strong>Post an article</strong></h2>
             <legend class="col-form-legend col-sm-12"></legend>
 
@@ -48,7 +73,12 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                                 <input type="text" class="form-control" name="articleName" placeholder="Enter article name" required>
                             </div>
                     </div>
-
+                    <div class="form-group">
+                        <label for="articleName" class="col-form-label col-sm-8">Article description:</label>
+                        <div class="col-sm-12">
+                            <input style="height:100px ;" type="text" class="form-control" name="articleDescription" placeholder="Enter article description" required>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="category" class="col-form-label col-sm-8">Category:</label>
                         <div class="col-sm-12">
@@ -131,6 +161,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
                 </div>
+        <button class="btn btn-primary pull-right" type="submit" name="postIt">Post it</button>
     </form>
     </div>
 

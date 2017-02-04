@@ -318,19 +318,20 @@ if(isset($_POST['btn-login']))
        <div class="panel panel-default">
            <div class="panel-body ">
                <div class="col-md-4">
-                   <img src="#" class="thumbnail" width="283" height="230">
+                   <img src="img/articlePics/bike7.jpg" class="thumbnail image-responsive" width="283" height="230">
                    <hr>
-                   <img src="#" class="thumbnail" width="283" height="230">
+                   <img src="img/articlePics/bike2.jpg" class="thumbnail" width="283" height="230">
                </div>
                <div class="col-md-4">
-                   <img src="#" class="thumbnail" width="283" height="230">
+                   <img src="img/articlePics/bike3.jpg" class="thumbnail " width="283" height="230">
                    <hr>
-                   <img src="#" class="thumbnail" width="283" height="230">
+                   <img src="img/articlePics/bike4.jpg" class="thumbnail" width="283" height="230">
                </div>
                <div class="col-md-4">
-                   <img src="#" class="thumbnail" width="283" height="230">
+
+                   <img src="img/articlePics/bike5.jpg" class="thumbnail" width="283" height="230">
                    <hr>
-                   <img src="#" class="thumbnail" width="283" height="230">
+                   <img src="img/articlePics/bike6.jpg" class="thumbnail" width="283" height="230">
                </div>
            </div>
        </div>
