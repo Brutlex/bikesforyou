@@ -95,12 +95,8 @@ body {
     padding: 0 !important;
     margin: 0 !important;
 }
-.panel-primary {
-    border: 0;
+
+.padding{
+    padding: 20px;
 }
 
-.vcenter{
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-}

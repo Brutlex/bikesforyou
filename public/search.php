@@ -53,11 +53,35 @@ if (!isset($_GET['searchbar'])){
 else {
     $article_name = '%' . trim($_GET['searchbar']) . '%';
 }
-$category = $_GET['cat'];
+
+
+if($_GET['category'] == "any"){
+    $category = "%";
+}
+else{
+    $category = $_GET['category'];
+}
+
+
 $price_from = $_GET['price_from'];
 $price_to = $_GET['price_to'];
-$colour = $_GET['clr'];
-$material = $_GET['mat'];
+
+
+if($_GET['colour'] == "any"){
+    $colour = "%";
+}
+else{
+    $colour = $_GET['colour'];
+}
+
+
+if($_GET['material'] == "any"){
+    $material = "%";
+}
+else{
+    $material = $_GET['material'];
+}
+
 
 if (!isset($_GET['brand'])) {
     $brand = "%";
@@ -84,34 +108,30 @@ foreach($result as $row){
     echo'<div class="container">';
     echo '<div class="col-lg-1"></div>
     <div class=" container-fluid col-lg-10">
-        <ul>
+        <div class="panel panel-default">
+        <div class="panel-body">
+        <ul style="list-style: none">
             <li>
                 <div class="container col-md-4" >
-                    <img src="img/articlePics/' . $row['picture'] . ' " class="thumbnail img-responsive">
+                    <img src="img/articlePics/' . $row['picture'] . ' " class="img-responsive">
                 </div>
                 <div class="col-md-8">
-                    <div class="col-sm-4">
+                    <div class="col-md-8">
                         <p>' . $row['articleName'] . '</p>
                         <br>
-                        <p>' . $row['material'] . '</p>
-                        <br>
-                    </div>
-                    <div class="col-sm-4">
-                        <p>' . $row['category'] . '</p>
-                        <br>
-                        <p>' . $row['brand'] . '</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>' . $row['price'] . '</p>
-                        <br>
-                        <p>' . $row['colour'] . '</p>
                         <br>
                         <p>posted by ' . $author_name . '</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h3 class="pull-right">'. $row['price'] .' &#8364;</h3>
                     </div>
                 </div>
             </li>
         </ul>
+        </div>
+        </div>
     </div>
+    
     <div class="col-lg-1"></div>';
     echo '</div>';
 }

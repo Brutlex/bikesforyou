@@ -55,289 +55,90 @@ if(isset($_POST['btn-login']))
         </div>
 
 
-<div class="col-lg-3">
-    <div class="container" style="padding-top: 20px;">
-        <div class="row" style="color:#3385ff; padding-left: 40px;">
-            <h4><strong>Filter your search</strong</h4>
-        </div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-3">
-                <div id="accordion" class="panel panel-primary behclick-panel">
-                    <div class="panel-body" >
+        <div class="padding">
+            <div class="container" >
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body" >
+                                <div class="form-group">
+                                    <label for="category1" class="control-label">Category</label>
+                                    <select class="form-control" name="category" id="category">
+                                        <option value="any">Any</option>
+                                        <option value="Mountainbike">Mountainbike</option>
+                                        <option value="City bike">City bike</option>
+                                        <option value="Trekkingbike">Trekkingbike</option>
+                                        <option value="Road bike">Road bike</option>
+                                        <option value="Kids bike">Kids bike</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="brand" class="control-label">Brand</label>
+                                    <div class="input-group">
+                                        <input type="text" name="brand" class="form-control" id="brand" placeholder="Enter brand name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pricefrom" class="control-label">Min Price</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon" id="basic-addon1">€</div>
+                                        <input type="number" name="price_from" min="0" max="5000" value="0" class="form-control" id="pricefrom" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="priceto" class="control-label">Max Price</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon" id="basic-addon2">€</div>
+                                        <input type="number" name="price_to" min="0" max="5000" value="5000" class="form-control" id="priceto" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="material" class="control-label">Frame material</label>
+                                    <select class="form-control" name="material" id="material">
+                                        <option value="any">Any</option>
+                                        <option value="Steel">Steel</option>
+                                        <option value="Aluminium">Aluminium</option>
+                                        <option value="Carbon">Carbon</option>
+                                        <option value="Titanium">Titanium</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="colour" class="control-label">Colour</label>
+                                    <select class="form-control" name="colour" id="colour">
+                                        <option value="any">Any</option>
+                                        <option value="Black">Black</option>
+                                        <option value="White">White</option>
+                                        <option value="Red">Red</option>
+                                        <option value="Yellow">Yellow</option>
+                                        <option value="Blue">Blue</option>
+                                        <option value="Green">Green</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">Search</button>
+                                </div>
 
-
-
-
-
-                        <div class="panel-heading " >
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#collapse0">
-                                    <i class="indicator fa fa-caret-down" aria-hidden="true"></i> Category
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapse0" class="panel-collapse collapse" >
-                            <div class="form-goup">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="cat" value="%" checked="checked">
-                                            all
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="cat" value="Mountainbike">
-                                            Mountainbike
-                                        </label>
-                                    </div>
-                                    <div class="radio" >
-                                        <label>
-                                            <input type="radio" name="cat" value="City bike" >
-                                            City bike
-                                        </label>
-                                    </div>
-                                    <div class="radio"  >
-                                        <label>
-                                            <input type="radio" name="cat" value="Trekkingbike" >
-                                            Trekkingbike
-                                        </label>
-                                    </div>
-                                    <div class="radio"  >
-                                        <label>
-                                            <input type="radio" name="cat" value="Road bike" >
-                                            Road bike
-                                        </label>
-                                    </div>
-                                    <div class="radio"  >
-                                        <label>
-                                            <input type="radio" name="cat" value="Kid's bike" >
-                                            Kid's bike
-                                        </label>
-                                    </div>
-                                    <div class="radio"  >
-                                        <label>
-                                            <input type="radio" name="cat" value="Other" >
-                                            Other
-                                        </label>
-                                    </div>
                             </div>
                         </div>
+                    </div>
 
 
 
 
+                    <div class="col-md-9">
+                        <div class="panel panel-default">
+                            <div class="panel-body ">
 
-
-
-                        <div class="panel-heading " >
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#collapse1">
-                                    <i class="indicator fa fa-caret-down" aria-hidden="true"></i> Price
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapse1" class="panel-collapse collapse" >
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <div class="form-control">
-                                        <label>
-                                            from
-                                            <input type="number" name="price_from" min="0" max="5000" value="0">
-                                            &#8364;
-                                        </label>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="form-control">
-                                        <label>
-                                            to &nbsp &nbsp
-                                            <input type="number" name="price_to" min="0" max="5000" value="5000">
-                                            &#8364;
-                                        </label>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-
-
-
-
-
-
-                        <div class="panel-heading" >
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#collapse2"><i class="indicator fa fa-caret-down" aria-hidden="true"></i> Color</a>
-                            </h4>
-                        </div>
-                        <div id="collapse2" class="panel-collapse collapse">
-                            <div class="formgroup">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="clr" value="%" checked="checked">
-                                            all
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="clr" value="black">
-                                            black
-                                        </label>
-                                    </div>
-                                    <div class="radio" >
-                                        <label>
-                                            <input type="radio"name="clr" value="white">
-                                            white
-                                        </label>
-                                    </div>
-                                    <div class="radio"  >
-                                        <label>
-                                            <input type="radio" name="clr" value="green" >
-                                            green
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="clr" value="yellow" >
-                                            yellow
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="clr" value="red" >
-                                            red
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="clr" value="blue" >
-                                            blue
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name ="clr" value="orange" >
-                                            orange
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="clr" value="other" >
-                                            other
-                                        </label>
-                                    </div>
-                            </div>
-
-                        </div>
-
-
-
-
-
-                        <div class="panel-heading " >
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#collapse3">
-                                    <i class="indicator fa fa-caret-down" aria-hidden="true"></i> Brand
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapse3" class="panel-collapse collapse" >
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <div class="form-control">
-                                        <input type="text" id="textInput" name="brand" name="brand" placeholder="Enter brand">
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-
-
-
-                        <div class="panel-heading " >
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#collapse4">
-                                    <i class="indicator fa fa-caret-down" aria-hidden="true"></i> Material
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapse4" class="panel-collapse collapse" >
-                            <div class="form-group">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="mat" value="%" checked="checked">
-                                          all
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="mat" value="steel">
-                                            Steel
-                                        </label>
-                                    </div>
-                                    <div class="radio" >
-                                        <label>
-                                            <input type="radio" name="mat" value="aluminium">
-                                            Aluminium
-                                        </label>
-                                    </div>
-                                    <div class="radio"  >
-                                        <label>
-                                            <input type="radio" name="mat" value="carbon">
-                                            Carbon
-                                        </label>
-                                    </div>
-                                    <div class="radio"  >
-                                        <label>
-                                            <input type="radio" name="mat" value="titanium" >
-                                            Titanium
-                                        </label>
-                                    </div>
-                                    <div class="radio"  >
-                                        <label>
-                                            <input type="radio" name="mat" value="other" >
-                                            Other
-                                        </label>
-                                    </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
     </form>
-
-
-
-
-    <div class="col-lg-9" style="padding-top: 25px">
-       <div class="panel panel-default">
-           <div class="panel-body ">
-               <div class="col-md-4">
-                   <img src="img/articlePics/bike7.jpg" class="thumbnail image-responsive" width="283" height="230">
-                   <hr>
-                   <img src="img/articlePics/bike2.jpg" class="thumbnail" width="283" height="230">
-               </div>
-               <div class="col-md-4">
-                   <img src="img/articlePics/bike3.jpg" class="thumbnail " width="283" height="230">
-                   <hr>
-                   <img src="img/articlePics/bike4.jpg" class="thumbnail" width="283" height="230">
-               </div>
-               <div class="col-md-4">
-
-                   <img src="img/articlePics/bike5.jpg" class="thumbnail" width="283" height="230">
-                   <hr>
-                   <img src="img/articlePics/bike6.jpg" class="thumbnail" width="283" height="230">
-               </div>
-           </div>
-       </div>
-   </div>
-
-
 
 
 
