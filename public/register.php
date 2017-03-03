@@ -51,7 +51,8 @@ if(isset($_POST['btn-signup'])) {
      <strong>Email</strong> is already registered. Please log in or choose another one.
      </div>
      ";
-    } elseif ($stmt2->rowCount() > 0) {
+    }
+    elseif ($stmt2->rowCount() > 0) {
         $msg_err = "
         <div class='alert alert-danger'>
     <button class='close' data-dismiss='alert'>&times;</button>
@@ -72,7 +73,12 @@ if(isset($_POST['btn-signup'])) {
 
     else {
         if ($reg_user->register($uname, $uemail, $upass, $sex, $firstname, $lastname, $city, $zip, $phone)) {
-            /*          $id = $reg_user->lastID();
+            /*
+
+
+
+
+                    $id = $reg_user->lastID();
                         $key = base64_encode($id);
                         $id = $key;*/
 
@@ -103,7 +109,7 @@ if(isset($_POST['btn-signup'])) {
             $msg = "     
                     <div class='alert alert-success'>
                     <button class='close' data-dismiss='alert'>&times;</button>
-                    <strong>Success!</strong>  Your accout has been created. You will be redirected back to the home page. If it doesn't work <a href=\"home\" class=\"alert-link\">click here</a>. 
+                    <strong>Success!</strong>  Your account has been created. You will be redirected back to the home page. If it doesn't work <a href=\"home\" class=\"alert-link\">click here</a>. 
                     </div>
                     ";
 

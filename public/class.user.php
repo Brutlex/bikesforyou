@@ -15,9 +15,14 @@ class USER
     }
 
     public function runQuery($sql)
+{
+    $stmt = $this->conn->prepare($sql);
+    return $stmt;
+}
+
+    public function redirect($url)
     {
-        $stmt = $this->conn->prepare($sql);
-        return $stmt;
+        header("Location: $url");
     }
 
     public function lastID()
@@ -60,7 +65,6 @@ class USER
             $stmt->bindparam(":user_name",$uname);
             $stmt->bindparam(":user_mail",$uemail);
             $stmt->bindparam(":user_pass",$upass );
-//          $stmt->bindparam(":active_code",$code);
             $stmt->bindparam(":sex",$sex);
             $stmt->bindparam(":first_name",$firstname);
             $stmt->bindparam(":last_name",$lastname);
@@ -76,25 +80,7 @@ class USER
             echo $ex->getMessage();
         }
     }
-/*
-    public function search($srch,$category,$price_from,$price_to,$colour,$material)
-    {
-        try {
-            $stmt = $this->conn->prepare("SELECT * FROM articles WHERE articleName LIKE ':article_name' AND category LIKE ':category' AND colour LIKE ':colour' AND material LIKE ':material' AND price BETWEEN ':price_from' AND ':price_to'" )
-            $stmt->bindparam(":article_name", $srch);
-            $stmt->bindparam(":category", $category);
-            $stmt->bindparam(":price_from", $price_from);
-            $stmt->bindparam(":price_to", $price_to);
-            $stmt->bindparam(":colour", $colour);
-            $stmt->bindparam(":material", $material);
 
-            $stmt->execute();
-            return $stmt;
-        } catch (PDOException $ex) {
-            echo $ex->getMessage();
-        }
-    }
-*/
     public function login($uemail,$upass)
     {
         try
@@ -114,7 +100,7 @@ class USER
                     }
                     else
                     {
-                        header("Location: login");
+                        header("Location: login?ref=incorrect");
                         exit;
                     }
                 }
@@ -126,7 +112,7 @@ class USER
             }
             else
             {
-                header("Location: login");
+                header("Location: login?ref=incorrect");
                 exit;
             }
         }
@@ -145,10 +131,6 @@ class USER
         }
     }
 
-    public function redirect($url)
-    {
-        header("Location: $url");
-    }
 
     public function logout()
     {

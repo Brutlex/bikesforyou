@@ -17,6 +17,36 @@ if(isset($_POST['btn-login']))
     {
         $user_login->redirect('home');
     }
+    else{
+        $user_login->redirect('login?ref=incorrect');
+    }
+}
+if(!isset($_GET['ref'])){
+    $msg = "<div class='alert alert-info'>
+                    <button class='close' data-dismiss='alert'>&times;</button>
+                    Please enter Your email and password!
+                </div>";
+}
+else{
+    switch($_GET['ref']){
+        case "post":
+            $msg = "<div class='alert alert-danger'>
+                          <button class='close' data-dismiss='alert'>&times;</button>
+                          Please Log in or <strong><a href=\"register\" class=\"alert-link\"> Sign up</a></strong> to continue!
+                    </div>";
+            break;
+        case "incorrect":
+            $msg = "<div class='alert alert-danger'>
+                          <button class='close' data-dismiss='alert'>&times;</button>
+                          <strong>Incorrect</strong> email or password!
+                    </div>";
+            break;
+        default:
+            $msg = "<div class='alert alert-info'>
+                        <button class='close' data-dismiss='alert'>&times;</button>
+                        Please enter Your email and password!
+                    </div>";
+    }
 }
 ?>
 <html>
@@ -34,10 +64,10 @@ if(isset($_POST['btn-login']))
 </div>
 
 <div class="container" style="margin-top:20px;">
-    <div class='alert alert-danger'>
-        <button class='close' data-dismiss='alert'>&times;</button>
-        <strong>Incorrect email/password!</strong>
-    </div>
+
+<?php
+    echo $msg;
+?>
 
     <form class="form-horizontal"  method="post" accept-charset="UTF-8">
         <div class="form-group">

@@ -3,6 +3,7 @@ body {
     line-height: 1.8;
     color: #818181;
     padding-top: 60px;
+    background-color:#e9ebee;
 }
 
 .container-fluid {
@@ -56,7 +57,7 @@ body {
 
 
 #imaginary_container{
-    margin-top:10%;
+    margin-top:15%;
 }
 .stylish-input-group .input-group-addon{
     background: white !important;
@@ -98,6 +99,8 @@ body {
     border: 0;
 }
 
-.form-control{
-    border:0 !important;
+.vcenter{
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
 }

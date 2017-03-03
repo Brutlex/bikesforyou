@@ -6,14 +6,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" id ="logo" href="../index">BikesForYou</a>
+            <a class="navbar-brand" id ="logo" href="/">BikesForYou</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
 
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a href="../index">HOME</a></li>
+                <li><a href="/">HOME</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">LOG IN</a>
                     <div class="dropdown-menu" style="padding: 15px; padding-bottom: 10px; width:300%;">
                         <form class="form-horizontal"  method="post" accept-charset="UTF-8">

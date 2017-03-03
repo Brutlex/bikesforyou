@@ -30,13 +30,13 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
         <div>
             <?php require_once 'tags/navmembers.php'; ?>
         </div>
-        <form action="search" method="get" name="form_search">
+        <form action="search" id="searchform" method="get" name="form_search">
         <div class="container" id="search" >
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     <div id="imaginary_container">
                         <div class="input-group stylish-input-group">
-                            <input type="text" class="form-control" name="searchbar" placeholder="Search by article name" pattern="[^'\x22]+" title="Cannot contain apostrophes" >
+                            <input type="text" id="textInput" class="form-control" name="searchbar" placeholder="Search by article name" pattern="[^'\x22]+" title="Cannot contain apostrophes" >
                             <span class="input-group-addon">
                         <button type="submit">
                             <span class="glyphicon glyphicon-search"></span>
@@ -238,7 +238,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                                     <ul class="list-group">
                                         <li class="list-group-item">
                                             <div class="form-control">
-                                                    <input type="text" name="brand" name="brand" value="" placeholder="Enter brand">
+                                                    <input type="text" id="textInput" name="brand" name="brand" placeholder="Enter brand">
                                             </div>
                                         </li>
                                     </ul>
