@@ -58,13 +58,14 @@ class USER
 
     public function register($uname,$uemail,$upass,$sex,$firstname,$lastname,$city,$zip,$phone)
     {
+        $pwhash = password_hash($upass,PASSWORD_DEFAULT);
         try
         {
             $stmt = $this->conn->prepare("INSERT INTO users(userName,userEmail,userPass,sex,firstName,lastName,city,zip,phoneNumber,registrationDate) 
                                                 VALUES(:user_name, :user_mail, :user_pass, :sex, :first_name, :last_name, :city, :zip, :phone_number, NOW())");
             $stmt->bindparam(":user_name",$uname);
             $stmt->bindparam(":user_mail",$uemail);
-            $stmt->bindparam(":user_pass",$upass );
+            $stmt->bindparam(":user_pass",$pwhash);
             $stmt->bindparam(":sex",$sex);
             $stmt->bindparam(":first_name",$firstname);
             $stmt->bindparam(":last_name",$lastname);
@@ -93,7 +94,7 @@ class USER
             {
                 if($userRow['userStatus']=="Y")
                 {
-                    if($userRow['userPass']==$upass)
+                    if(password_verify($upass,$userRow['userPass']))
                     {
                         $_SESSION['userSession'] = $userRow['userId'];
                         return true;

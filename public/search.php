@@ -68,7 +68,9 @@ else{
 
 $result = $articleObj->search($article_name,$category,$price_from,$price_to,$colour,$material,$brand);
 
-
+if ($result == null){
+    echo "No matches found!";
+}
 foreach($result as $row){
 
 
