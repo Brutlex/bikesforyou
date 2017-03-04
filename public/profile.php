@@ -5,7 +5,7 @@ $user_home = new USER();
 
 if(!$user_home->is_logged_in())
 {
-    $user_home->redirect('index');
+    $user_home->redirect('/');
 }
 
 $stmt = $user_home->runQuery("SELECT * FROM users WHERE userId=:uid");

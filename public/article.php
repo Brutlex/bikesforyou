@@ -11,7 +11,7 @@ if(isset($_POST['btn-login']))
     $upass = trim($_POST['upass']);
 
     if($user_login->login($uemail,$upass)) {
-        $user_login->redirect('home');
+        $user_login->redirect('/');
     }
 }
 $stmt = $user_home->runQuery("SELECT * FROM users WHERE userId=:uid");

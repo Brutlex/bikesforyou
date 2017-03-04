@@ -2,11 +2,8 @@
 session_start();
 require_once 'class.user.php';
 $user_login = new USER();
+$user_home = new USER();
 
-if($user_login->is_logged_in()!="")
-{
-    $user_login->redirect('home');
-}
 
 if(isset($_POST['btn-login']))
 {
@@ -15,8 +12,13 @@ if(isset($_POST['btn-login']))
 
     if($user_login->login($uemail,$upass))
     {
-        $user_login->redirect('home');
+        $user_login->redirect('/');
     }
+}
+if ($user_home->is_logged_in()) {
+    $stmt = $user_home->runQuery("SELECT * FROM users WHERE userId=:uid");
+    $stmt->execute(array(":uid" => $_SESSION['userSession']));
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 ?>
 <!DOCTYPE html>
@@ -34,7 +36,16 @@ if(isset($_POST['btn-login']))
 <body id="home">
     <?php include_once("analyticstracking.php") ?>
     <div>
-        <?php require_once 'tags/navbar.php'; ?>
+        <?php
+
+    if(!$user_home->is_logged_in()){
+        require_once 'tags/navbar.php';
+    }
+    else{
+        require_once 'tags/navmembers.php';
+    }
+
+    ?>
     </div>
     <form action="search" id="searchform" method="get" name="form_search">
         <div class="container" id="search" >

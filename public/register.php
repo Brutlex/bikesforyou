@@ -8,7 +8,7 @@ $user_login = new USER();
 
 if($reg_user->is_logged_in()!="")
 {
-    $reg_user->redirect('home');
+    $reg_user->redirect('/');
 }
 if(isset($_POST['btn-login']))
 {
@@ -17,7 +17,7 @@ if(isset($_POST['btn-login']))
 
     if($user_login->login($uemail,$upass))
     {
-        $user_login->redirect('home');
+        $user_login->redirect('/');
     }
 }
 
@@ -135,7 +135,7 @@ if(isset($_POST['btn-signup'])) {
         </div>
         <div class="container-fluid">
             <?php if(isset($msg)) {
-                echo "<script>setTimeout(\"location.href = 'http://www.bikesforyou.at/home';\",5000);</script>";
+                echo "<script>setTimeout(\"location.href = 'http://www.bikesforyou.at';\",5000);</script>";
                 echo $msg;
             }
             if(isset($msg_err)){

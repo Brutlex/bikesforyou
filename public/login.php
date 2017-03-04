@@ -5,7 +5,7 @@ $user_login = new USER();
 
 if($user_login->is_logged_in()!="")
 {
-    $user_login->redirect('home');
+    $user_login->redirect('/');
 }
 
 if(isset($_POST['btn-login']))
@@ -15,7 +15,7 @@ if(isset($_POST['btn-login']))
 
     if($user_login->login($uemail,$upass))
     {
-        $user_login->redirect('home');
+        $user_login->redirect('/');
     }
     else{
         $user_login->redirect('login?ref=incorrect');

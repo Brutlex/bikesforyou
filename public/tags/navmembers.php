@@ -6,14 +6,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" id ="logo" href="../home">BikesForYou</a>
+            <a class="navbar-brand" id ="logo" href="/">BikesForYou</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
 
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a href="../home">HOME</a></li>
+                <li><a href="/">HOME</a></li>
                 <li><a href="../profile"><span class="glyphicon glyphicon-user"></span><?php echo $row['userName']; ?></a></li>
                 <li><a href="../post"">POST</a></li>
                 <li><a href="../about">ABOUT</a></li>

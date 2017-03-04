@@ -13,7 +13,7 @@ if(isset($_POST['btn-login']))
     $upass = trim($_POST['upass']);
 
     if($user_login->login($uemail,$upass)) {
-        $user_login->redirect('home');
+        $user_login->redirect('/');
     }
 }
 $stmt = $user_home->runQuery("SELECT * FROM users WHERE userId=:uid");
@@ -98,7 +98,7 @@ echo '<div class="padding">';
 if ($result == null){
     echo "<div class=\"jumbotron\" s>
             <h1 align='center'>No results found :(</h1>      
-            <strong><a href=\"index\" class=\"alert-link\"><p align = 'center'>Try a different search</p></a></strong>
+            <strong><a href=\"/\" class=\"alert-link\"><p align = 'center'>Try a different search</p></a></strong>
             </div>";
 }
 
