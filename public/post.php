@@ -1,7 +1,9 @@
 <?php
 session_start();
 require_once 'class.user.php';
+require_once 'class.article.php';
 $user_home = new USER();
+$articleObj = new ARTICLE();
 
 if(!$user_home->is_logged_in())
 {
@@ -24,7 +26,7 @@ if(isset($_POST['postIt'])) {
     $colour = trim($_POST['colour']);
 
 
-    if ($user_home->post($userId, $articleName, $articleDescription, $category, $material, $frameSize, $price, $brand1, $colour)) {
+    if ($articleObj->post($userId, $articleName, $articleDescription, $category, $material, $frameSize, $price, $brand1, $colour)) {
 
         $msg = "     
                     <div class='alert alert-success'>
@@ -84,12 +86,12 @@ if(isset($_POST['postIt'])) {
                         <div class="col-sm-12">
                             <select class="form-control" name="category" required>
                                 <option value="" disabled selected>Select your option</option>
-                                <option value="m">Mountainbike</option>
-                                <option value="c">City bike</option>
-                                <option value="t">Trekkingbike</option>
-                                <option value="r">Road bike</option>
-                                <option value="k">Kid's bike</option>
-                                <option value="o">Other</option>
+                                <option value="Mountainbike">Mountainbike</option>
+                                <option value="City bike">City bike</option>
+                                <option value="Trekkingbike">Trekkingbike</option>
+                                <option value="Road bike">Road bike</option>
+                                <option value="Kids bike">Kids bike</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
                     </div>
@@ -99,11 +101,11 @@ if(isset($_POST['postIt'])) {
                         <div class="col-sm-12">
                             <select class="form-control" name="material" >
                                 <option value="" disabled selected>Select your option</option>
-                                <option value="steel">Steel</option>
-                                <option value="aluminium">Aluminium</option>
-                                <option value="carbon">Carbon</option>
-                                <option value="titanium">Titanium</option>
-                                <option value="other">Other</option>
+                                <option value="Steel">Steel</option>
+                                <option value="Aluminium">Aluminium</option>
+                                <option value="Carbon">Carbon</option>
+                                <option value="Titanium">Titanium</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
                     </div>
@@ -133,7 +135,7 @@ if(isset($_POST['postIt'])) {
                     <div class="form-group">
                         <label for="brand" class="col-form-label col-sm-8">Brand:</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" name="brand" placeholder="Enter brand">
+                            <input type="text" class="form-control" name="brand" placeholder="Enter brand name">
                         </div>
                     </div>
 
@@ -142,14 +144,13 @@ if(isset($_POST['postIt'])) {
                         <div class="col-sm-12">
                             <select class="form-control" name="colour" >
                                 <option value="" disabled selected>Select your option</option>
-                                <option value="black">black</option>
-                                <option value="white">white</option>
-                                <option value="green">green</option>
-                                <option value="yellow">yellow</option>
-                                <option value="red">red</option>
-                                <option value="blue">blue</option>
-                                <option value="orange">orange</option>
-                                <option value="other">other</option>
+                                <option value="Black">black</option>
+                                <option value="White">white</option>
+                                <option value="Green">green</option>
+                                <option value="Yellow">yellow</option>
+                                <option value="Red">red</option>
+                                <option value="Blue">blue</option>
+                                <option value="Other">other</option>
                             </select>
                         </div>
                     </div>

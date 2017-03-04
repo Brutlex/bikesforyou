@@ -31,31 +31,6 @@ class USER
         return $stmt;
     }
 
-    public function post($userId, $articleName,$articleDescription,$category,$material,$frameSize,$price,$brand,$colour)
-    {
-        try
-        {
-            $stmt = $this->conn->prepare("INSERT INTO articles(userId,articleName,description,category,material,frameSize,price,brand,colour,time) 
-                                                VALUES(:user_id, :article_name, :article_description, :category, :material, :frame_size, :price, :brand, :colour, NOW())");
-            $stmt->bindparam(":user_id",$userId);
-            $stmt->bindparam(":article_name",$articleName);
-            $stmt->bindparam(":article_description",$articleDescription);
-            $stmt->bindparam(":category",$category );
-            $stmt->bindparam(":material",$material);
-            $stmt->bindparam(":frame_size",$frameSize);
-            $stmt->bindparam(":price",$price);
-            $stmt->bindparam(":brand",$brand);
-            $stmt->bindparam(":colour",$colour);
-
-            $stmt->execute();
-            return $stmt;
-        }
-        catch(PDOException $ex)
-        {
-            echo $ex->getMessage();
-        }
-    }
-
     public function register($uname,$uemail,$upass,$sex,$firstname,$lastname,$city,$zip,$phone)
     {
         $pwhash = password_hash($upass,PASSWORD_DEFAULT);

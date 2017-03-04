@@ -110,7 +110,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-primary btn-block">Search</button>
+                                                <button type="submit" class="btn btn-primary btn-block" id="search2">Search</button>
                                             </div>
 
                                 </div>
@@ -121,11 +121,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
                     <div class="col-md-9">
-                        <div class="panel panel-default">
-                            <div class="panel-body ">
-
-                            </div>
-                        </div>
+                        <?php include_once ('printnewest.php'); ?>
                     </div>
                 </div>
             </div>

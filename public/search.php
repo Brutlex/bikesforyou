@@ -90,11 +90,19 @@ else{
     $brand ='%' . trim($_GET['brand']) . '%';
 }
 
+
 $result = $articleObj->search($article_name,$category,$price_from,$price_to,$colour,$material,$brand);
 
+echo '<div class="padding">';
+
 if ($result == null){
-    echo "No matches found!";
+    echo "<div class=\"jumbotron\" s>
+            <h1 align='center'>No results found :(</h1>      
+            <strong><a href=\"index\" class=\"alert-link\"><p align = 'center'>Try a different search</p></a></strong>
+            </div>";
 }
+
+
 foreach($result as $row){
 
 
@@ -107,22 +115,23 @@ foreach($result as $row){
 
     echo'<div class="container">';
     echo '<div class="col-lg-1"></div>
-    <div class=" container-fluid col-lg-10">
+    <div class="col-lg-10">
         <div class="panel panel-default">
         <div class="panel-body">
         <ul style="list-style: none">
             <li>
-                <div class="container col-md-4" >
-                    <img src="img/articlePics/' . $row['picture'] . ' " class="img-responsive">
+                <div class="container col-sm-4" >
+                    <img src="img/articlePics/' . $row['picture'] . ' " class="thumbnail img-responsive">
                 </div>
-                <div class="col-md-8">
-                    <div class="col-md-8">
+                <div class="col-sm-8">
+                    <div class="col-sm-8">
                         <p>' . $row['articleName'] . '</p>
+                        <br>
                         <br>
                         <br>
                         <p>posted by ' . $author_name . '</p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-sm-4">
                         <h3 class="pull-right">'. $row['price'] .' &#8364;</h3>
                     </div>
                 </div>
@@ -134,7 +143,8 @@ foreach($result as $row){
     
     <div class="col-lg-1"></div>';
     echo '</div>';
-}
 
+}
+echo '</div>';
 ?>
 

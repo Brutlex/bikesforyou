@@ -99,4 +99,9 @@ body {
 .padding{
     padding: 20px;
 }
-
+.jumbotron{
+    background-color:#e9ebee !important;
+}
+#search2{
+    margin-top: 40px;
+}
