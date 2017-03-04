@@ -105,3 +105,16 @@ body {
 #search2{
     margin-top: 40px;
 }
+.form-padding{
+    margin-bottom: 10px;
+}
+
+#reg-submit, #log-submit{
+    margin-top:20px;
+}
+#lastName{
+    margin-bottom:30px;
+}
+.img-responsive{
+    height: 180px !important;
+}

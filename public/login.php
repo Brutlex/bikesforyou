@@ -68,23 +68,34 @@ else{
 <?php
     echo $msg;
 ?>
-
-    <form class="form-horizontal"  method="post" accept-charset="UTF-8">
-        <div class="form-group">
-            <label class="col-form-label col-sm-2" for="email">Email:</label>
-            <div class="col-sm-5">
-                <input id="uname" class="form-control login" type="text" name="uemail" placeholder="Username" />
-            </div>
+<div class="panel panel-default">
+    <div class="panel-body" >
+        <div class="padding">
+            <form class="form-horizontal"  method="post" accept-charset="UTF-8">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <div class="form-group">
+                        <label class="col-form-label col-sm-3" for="email">Email:</label>
+                            <div class="col-sm-9">
+                                <input id="uname" class="form-control login" type="text" name="uemail" placeholder="Username" />
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label col-sm-3" for="pass">Password:</label>
+                        <div class="col-sm-9">
+                            <input id="pass" class="form-control login" type="password" name="upass" placeholder="Password"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="form-group">
+                            <input class="btn btn-md btn-primary btn-block" type="submit" name="btn-login" id="log-submit" value="Log in" />
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-            <label class="col-form-label col-sm-2" for="pass">Password:</label>
-            <div class="col-sm-5">
-                <input id="pass" class="form-control login" type="password" name="upass" placeholder="Password"/>
-            </div>
-        </div>
-        <input class="btn btn-lg btn-primary" type="submit" name="btn-login" value="Log in" />
+    </div>
+</div>
 
-    </form>
 </div>
 
 </body>

@@ -24,7 +24,7 @@ foreach($results as $row){
         <ul style="list-style: none">
             <li>
                 <div class="container col-sm-4" >
-                    <img src="img/articlePics/' . $row['picture'] . ' " class="thumbnail img-responsive">
+                    <img src="img/articlePics/' . $row['picture'] . ' " class="img-responsive">
                 </div>
                 <div class="col-sm-8">
                     <div class="col-sm-8">

@@ -45,27 +45,30 @@ if(isset($_POST['btn-signup'])) {
     $row2 = $stmt2->fetch(PDO::FETCH_ASSOC);
 
     if ($stmt->rowCount() > 0) {
-        $msg = "
+        $msg_err = "<div class=\"padding\">
         <div class='alert alert-danger'>
     <button class='close' data-dismiss='alert'>&times;</button>
      <strong>Email</strong> is already registered. Please log in or choose another one.
      </div>
+     </div>
      ";
     }
     elseif ($stmt2->rowCount() > 0) {
-        $msg_err = "
+        $msg_err = "<div class=\"padding\">
         <div class='alert alert-danger'>
     <button class='close' data-dismiss='alert'>&times;</button>
      <strong>Username</strong> is already in use. Please choose another one.
+     </div>
      </div>
      ";
     }
      elseif ($upass!= $upass2)
         {
-            $msg_err = "
+            $msg_err = "<div class=\"padding\">
         <div class='alert alert-danger'>
     <button class='close' data-dismiss='alert'>&times;</button>
      <strong>Passwords</strong> do not match. Please try again.
+     </div>
      </div>
      ";
 
@@ -106,10 +109,11 @@ if(isset($_POST['btn-signup'])) {
 
             $reg_user->login($uemail,$upass);
 
-            $msg = "     
+            $msg = "<div class=\"padding\">     
                     <div class='alert alert-success'>
                     <button class='close' data-dismiss='alert'>&times;</button>
                     <strong>Success!</strong>  Your account has been created. You will be redirected back to the home page. If it doesn't work <a href=\"home\" class=\"alert-link\">click here</a>. 
+                    </div>
                     </div>
                     ";
 
@@ -133,7 +137,8 @@ if(isset($_POST['btn-signup'])) {
         <div>
             <?php require_once 'tags/navbar.php'; ?>
         </div>
-        <div class="container-fluid">
+        <div class="container col-lg-6 col-lg-offset-3">
+
             <?php if(isset($msg)) {
                 echo "<script>setTimeout(\"location.href = 'http://www.bikesforyou.at';\",5000);</script>";
                 echo $msg;
@@ -141,93 +146,81 @@ if(isset($_POST['btn-signup'])) {
             if(isset($msg_err)){
                 echo $msg_err;
             }?>
-        <div class="container" id="regform">
 
-            <form class="form-horizontal" method="post">
-                <h3>Please enter your data</h3>
-                <legend class=" col-form-legend col-sm-6"></legend>
-                <div class="container-fluid" id="form-label">
-                <div class="form-group">
-                    <label class="col-form-label col-sm-2" for="username">Username:</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" name="username" placeholder="Enter username" pattern=".{5,}" title="Must contain 5 or more characters" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-form-label col-sm-2" for="email">Email:</label>
-                    <div class="col-sm-4">
-                        <input type="email" class="form-control" name="email" placeholder="Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Please enter a valid email adress" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-form-label col-sm-2" name="pwd">Password:</label>
-                    <div class="col-sm-4">
-                        <input type="password" class="form-control" name="pwd" placeholder="Enter password" pattern=".{6,}" title="Must contain 6 or more characters" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-form-label col-sm-2" name="pwd2">Confirm Password:</label>
-                    <div class="col-sm-4">
-                        <input type="password" class="form-control" name="pwd2" placeholder="Confirm password" pattern=".{6,}" title="Must contain 6 or more characters" required>
-                    </div>
-                </div>
-
-                    <div class="form-group">
-                        <label class="col-form-label col-sm-2" for="title">Title:</label>
-                        <div class="col-sm-4">
-                        <label class="radio-inline">
-                            <input type="radio" name="title" value="M" required> Mr.
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="title" value="F" required> Mrs.
-                        </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-form-label col-sm-2" for="firstName">First Name:</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" name="firstName" placeholder="Enter first name" pattern="[A-Za-z]{2,}" title="Invalid input. Letters only." required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label col-sm-2" for="lastName">Last Name:</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" name="lastName" placeholder="Enter last name" pattern="[A-Za-z]{2,}" title="Invalid input. Letters only." required>
-                        </div>
-                    </div>
-                </div>
-                <h3>Additional data</h3>
-                <legend class="col-form-legend col-sm-6"></legend>
-                <div class="container-fluid" id="form-label">
-
-                      <div class="form-group">
-                        <label class="col-form-label col-sm-2" for="city">City:</label>
-                          <div class="col-sm-3">
-                             <input type="text" class="form-control" name="city" placeholder="Enter city" pattern="[A-Za-z]{2,}" title="Invalid input. Letters only.">
-                          </div>
-                     </div>
-
-                        <div class="form-group">
-                            <label class="col-form-label col-sm-2" for="zip">ZIP:</label>
-                            <div class="col-sm-2">
-                                <input type="text" class="form-control" name="zip" placeholder="Enter ZIP code" pattern="[0-9]{2,}" title="Invalid input. Numbers only.">
+        <div class="padding">
+            <div class="panel panel-default ">
+                <div class="panel-body" >
+                    <div class="form-group col-lg-6 col-lg-offset-3" >
+                        <form class="form-horizontal" method="post">
+                            <div class="text-center">
+                                <h3>Please enter your data</h3>
                             </div>
-                        </div>
+                            <hr/>
 
-
-                        <div class="form-group">
-                            <label class="col-form-label col-sm-2" for="phone">Phone number:</label>
-                            <div class="col-sm-3">
-                                <input type="text" class="form-control" name="phone" placeholder="Enter phone number" pattern="[0-9]{6,32}" title="Invalid input. Numbers only. Replace '+' with '00'">
+                            <label for="username" class="control-label">Username</label>
+                            <div class="input-group col-lg-12 form-padding">
+                                <input type="text" name="username" class="form-control" id="username" placeholder="Enter username" pattern=".{5,}" title="Must contain 5 or more characters" required>
                             </div>
-                        </div>
+
+                            <label for="email" class="control-label">Email</label>
+                            <div class="input-group col-lg-12 form-padding">
+                                <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Please enter a valid email adress" required>
+                            </div>
+
+                            <label for="pwd" class="control-label">Password</label>
+                            <div class="input-group col-lg-12 form-padding">
+                                <input type="password" name="pwd" class="form-control" id="pwd" placeholder="Enter password" pattern=".{6,}" title="Must contain 6 or more characters" required>
+                            </div>
+
+                            <label for="pwd2" class="control-label">Confirm password</label>
+                            <div class="input-group col-lg-12 form-padding">
+                                <input type="password" name="pwd2" class="form-control" id="pwd2" placeholder="Confirm password" pattern=".{6,}" title="Must contain 6 or more characters" required>
+                            </div>
+
+                            <label for="gender" class="control-label"">Gender</label>
+                            <div class="input-group col-lg-12 form-padding">
+                                <label class="radio-inline">
+                                    <input type="radio" name="title" value="M" required> Male
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="title" value="F" required> Female
+                                </label>
+                            </div>
+
+                            <label for="firstname" class="control-label">First name</label>
+                            <div class="input-group col-lg-12 form-padding">
+                                <input type="text" name="firstName" class="form-control" id="firstName" placeholder="Enter first name" pattern="[A-Za-z]{2,}" title="Invalid input. Letters only." required>
+                            </div>
+
+                            <label for="lastname" class="control-label">Last name</label>
+                            <div class="input-group col-lg-12 form-padding">
+                                <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Enter last name" pattern="[A-Za-z]{2,}" title="Invalid input. Letters only." required>
+                            </div>
+
+                            <hr/>
+
+                            <label for="city" class="control-label">City</label>
+                            <div class="input-group col-lg-12 form-padding">
+                                <input type="text" name="city" class="form-control" id="city" placeholder="Enter city" pattern="[A-Za-z]{2,}" title="Invalid input. Letters only.">
+                            </div>
+
+                            <label for="zip" class="control-label">ZIP</label>
+                            <div class="input-group col-lg-12 form-padding">
+                                <input type="text" name="zip" class="form-control" id="zip" placeholder="Enter ZIP code" pattern="[0-9]{2,}" title="Invalid input. Numbers only.">
+                            </div>
+
+                            <label for="phone" class="control-label">Phone number</label>
+                            <div class="input-group col-lg-12 form-padding">
+                                <input type="text" name="phone" class="form-control" id="phone" placeholder="Enter phone number" pattern="[0-9]{6,32}" title="Invalid input. Numbers only. Replace '+' with '00'">
+                            </div>
+
+                            <div class="form-group form-padding">
+                                <button class="btn btn btn-primary btn-block" id="reg-submit" type="submit" name="btn-signup">Sign Up</button>
+                            </div>
+                        </form>
                     </div>
-                <button class="btn btn-lg btn-primary" type="submit" name="btn-signup">Sign Up</button>
-            </form>
+                </div>
+            </div>
         </div>
         </div>
     </body>

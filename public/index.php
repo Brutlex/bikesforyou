@@ -129,7 +129,7 @@ if ($user_home->is_logged_in()) {
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-block" id="search2">Search</button>
+                                    <button type="submit" class="btn btn-primary btn-block" name="btn-signup">Sign Up</button>
                                 </div>
 
                             </div>
