@@ -113,6 +113,18 @@ foreach($result as $row){
     $author_name = $author['userName'];
 
 
+    $pic = "//img/articlePics/" . $row['picture'];
+
+    if($row['picture'] == ""){
+        $picture = "default.png";
+    }
+    else if (file_exists($pic)){
+        $picture = $row['picture'];
+    }
+    else{
+        $picture = $row['picture'];
+    }
+
     echo'<div class="container">';
     echo '<div class="col-lg-1"></div>
     <div class="col-lg-10">
@@ -121,7 +133,7 @@ foreach($result as $row){
         <ul style="list-style: none">
             <li>
                 <div class="container col-sm-4" >
-                    <img src="img/articlePics/' . $row['picture'] . ' " class="thumbnail img-responsive">
+                    <img src="img/articlePics/' . $picture . ' " class="img-responsive">
                 </div>
                 <div class="col-sm-8">
                     <div class="col-sm-8">

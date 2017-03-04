@@ -3,7 +3,7 @@ require_once ('class.article.php');
 
 $articleObj = new ARTICLE();
 
-$stmt = $articleObj->runQuery("SELECT * FROM articles ORDER BY articleId ASC LIMIT 4");
+$stmt = $articleObj->runQuery("SELECT * FROM articles ORDER BY articleId DESC LIMIT 4");
 $stmt->execute();
 $results = $stmt->fetchAll();
 
@@ -17,6 +17,18 @@ foreach($results as $row){
 
     $author_name = $author['userName'];
 
+    $pic = "//img/articlePics/" . $row['picture'];
+
+    if($row['picture'] == ""){
+        $picture = "default.png";
+    }
+    else if (file_exists($pic)){
+        $picture = $row['picture'];
+    }
+    else{
+        $picture = $row['picture'];
+    }
+
 
     echo '
         <div class="panel panel-default">
@@ -24,7 +36,7 @@ foreach($results as $row){
         <ul style="list-style: none">
             <li>
                 <div class="container col-sm-4" >
-                    <img src="img/articlePics/' . $row['picture'] . ' " class="img-responsive">
+                    <img src="img/articlePics/' . $picture . ' " class="img-responsive">
                 </div>
                 <div class="col-sm-8">
                     <div class="col-sm-8">

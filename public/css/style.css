@@ -81,13 +81,6 @@ body {
     background-size:cover;
 }
 
-.h-divider{
-    margin-top:5px;
-    margin-bottom:5px;
-    height:1px;
-    width:100%;
-    border-top:1px solid gray;
-}
 .login {
     margin-bottom:5px;
 }
