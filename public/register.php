@@ -3,13 +3,21 @@
 session_start();
 require_once 'class.user.php';
 
+//initalize objects
+
 $reg_user = new USER();
 $user_login = new USER();
+
+//check if user is logged in, logged in users can't access the register page
 
 if($reg_user->is_logged_in()!="")
 {
     $reg_user->redirect('/');
 }
+
+//support for login button in navbar, allows user to login with data entered
+
+
 if(isset($_POST['btn-login']))
 {
     $uemail = trim($_POST['uemail']);
@@ -20,6 +28,8 @@ if(isset($_POST['btn-login']))
         $user_login->redirect('/');
     }
 }
+
+//check if sign up button is pressed, if yes, prepare the variables received from form to use in query
 
 if(isset($_POST['btn-signup'])) {
     $uname = trim($_POST['username']);
@@ -34,15 +44,19 @@ if(isset($_POST['btn-signup'])) {
     $phone = trim($_POST['phone']);
     $pwhash = password_hash($upass, PASSWORD_BCRYPT);
 
-//  $code = md5(uniqid(rand()));
+    //check if email already exists
 
     $stmt = $reg_user->runQuery("SELECT userEmail FROM users WHERE userEmail=:email_id");
     $stmt->execute(array(":email_id" => $uemail));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    //check if username already exists
+
     $stmt2 = $reg_user->runQuery("SELECT userName FROM users WHERE userName=:uname");
     $stmt2->execute(array(":uname" => $uname));
     $row2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+    //set messages if validation failed
 
     if ($stmt->rowCount() > 0) {
         $msg_err = "
@@ -60,6 +74,8 @@ if(isset($_POST['btn-signup'])) {
                     </div>
                     ";
     }
+
+
      elseif ($upass!= $upass2)
         {
             $msg_err = "
@@ -70,6 +86,8 @@ if(isset($_POST['btn-signup'])) {
                         ";
 
     }
+
+    //if everything is ok with the input and registration was successful, log the user in, and set the message to notify user
 
     else {
         if ($reg_user->register($uname, $uemail, $upass, $sex, $firstname, $lastname, $city, $zip, $phone)) {
@@ -135,7 +153,11 @@ if(isset($_POST['btn-signup'])) {
         </div>
         <div class="container cont-msg col-lg-6 col-lg-offset-3">
 
-            <?php if(isset($msg)) {
+            <?php
+
+            //print the messages set before, redirect after successful registration with 5 sec delay
+
+            if(isset($msg)) {
                 echo "<script>setTimeout(\"location.href = 'http://www.bikesforyou.at';\",5000);</script>";
                 echo $msg;
             }

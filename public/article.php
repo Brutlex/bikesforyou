@@ -1,7 +1,11 @@
 <?php
+
+//not yet finished or directly included
+
 session_start();
-require_once 'class.user.php'
-;
+require_once 'class.user.php';
+
+
 $user_home = new USER();
 $user_login = new USER();
 

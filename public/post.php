@@ -2,17 +2,26 @@
 session_start();
 require_once 'class.user.php';
 require_once 'class.article.php';
+
+//initalize objects
+
 $user_home = new USER();
 $articleObj = new ARTICLE();
+
+//check if user is logged in, if not redirect user to login page with the "ref" value set (used to write different notifications on login screen)
 
 if(!$user_home->is_logged_in())
 {
     $user_home->redirect('login?ref=post');
 }
 
+//get the data from the logged in user
+
 $stmt = $user_home->runQuery("SELECT * FROM users WHERE userId=:uid");
 $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+//check if submit button is clicked, if yes, prepare variables from form for use in queries
 
 if(isset($_POST['btn-post'])) {
     $userId = $_SESSION['userSession'];
@@ -26,6 +35,7 @@ if(isset($_POST['btn-post'])) {
     $colour = trim($_POST['colour']);
     $file = $_FILES['photoUpload'];
 
+    //if posting of an article was successful set a message to notify user
 
     if ($articleObj->post($userId, $articleName, $articleDescription, $category, $material, $frameSize, $price, $brand1, $colour)) {
 
@@ -35,6 +45,8 @@ if(isset($_POST['btn-post'])) {
                     <strong>Success!</strong>  Your article has been created. 
                     </div>
                     ";
+
+        //check if a file was selected for upload, if yes, execute the upload and set the message, if not set the error message
 
         if(isset($file)) {
 
@@ -78,7 +90,11 @@ if(isset($_POST['btn-post'])) {
 
 <div class="container cont-msg">
 
-    <?php if(isset($msg)) {
+    <?php
+
+    //print the messages if they are set, one for post and one for image upload, redirect user if posting was successful
+
+    if(isset($msg)) {
 
         echo "<script>setTimeout(\"location.href = 'http://www.bikesforyou.at';\",3000);</script>";
 

@@ -1,9 +1,13 @@
 <?php
 session_start();
 require_once 'class.user.php';
+
+//initialize objects
+
 $user_login = new USER();
 $user_home = new USER();
 
+//support for login button in navbar, allows user to login with data entered
 
 if(isset($_POST['btn-login']))
 {
@@ -15,6 +19,9 @@ if(isset($_POST['btn-login']))
         $user_login->redirect('/');
     }
 }
+
+//check if user is logged in and if so get the user data
+
 if ($user_home->is_logged_in()) {
     $stmt = $user_home->runQuery("SELECT * FROM users WHERE userId=:uid");
     $stmt->execute(array(":uid" => $_SESSION['userSession']));
@@ -37,6 +44,8 @@ if ($user_home->is_logged_in()) {
     <?php include_once("analyticstracking.php") ?>
     <div>
         <?php
+
+        //different navbar if user is logged in or not
 
     if(!$user_home->is_logged_in()){
         require_once 'tags/navbar.php';
@@ -140,7 +149,11 @@ if ($user_home->is_logged_in()) {
 
 
                     <div class="col-md-9">
-                        <?php include_once ('printnewest.php'); ?>
+                        <?php
+
+                        //execute the "printnewest.php" script which prints the newest 4 acticles posted
+
+                        include_once ('printnewest.php'); ?>
                     </div>
                 </div>
             </div>

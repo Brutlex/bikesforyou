@@ -2,9 +2,14 @@
 session_start();
 require_once 'class.user.php';
 require_once 'class.article.php';
+
+//initalize objects
+
 $user_login = new USER();
 $user_home = new USER();
 $articleObj = new ARTICLE;
+
+//support for login button in navbar, allows user to login with data entered
 
 if(isset($_POST['btn-login']))
 {
@@ -17,14 +22,19 @@ if(isset($_POST['btn-login']))
     }
 }
 
+//get data of the logged in user
 
 $stmt = $user_home->runQuery("SELECT * FROM users WHERE userId=:uid");
 $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+//get data of the user profile specified with the value "user" in the link with the get method
+
 $stmtProfile = $user_home->runQuery("SELECT * FROM users WHERE userName=:uname");
 $stmtProfile->execute(array(":uname"=>$_GET['user']));
 $rowProfile = $stmtProfile->fetch(PDO::FETCH_ASSOC);
+
+//redirect if invalid "user" is specified or the user is trying to access his profile while not logged in
 
 if ($rowProfile=="" || !isset($_GET['user'])){
     $user_home->redirect('/');
@@ -46,12 +56,16 @@ if ($rowProfile=="" || !isset($_GET['user'])){
 <div>
     <?php
 
+    //different navbars if user is logged in or not
+
     if(!$user_home->is_logged_in()){
         require_once 'tags/navbar.php';
     }
     else{
         require_once 'tags/navmembers.php';
     } ?>
+
+    <!-- set values in the profile view, received from the $rowProfile variable -->
 </div>
 <div class="padding">
 <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
@@ -87,6 +101,9 @@ if ($rowProfile=="" || !isset($_GET['user'])){
     </div>
 
     <?php
+
+    //list articles posted by the user whose profile is open
+
         $stmtPosts = $articleObj->runQuery("SELECT * FROM articles WHERE userId =:uid");
         $stmtPosts->execute(array(":uid"=>$rowProfile['userId']));
         $results = $stmtPosts->fetchAll();

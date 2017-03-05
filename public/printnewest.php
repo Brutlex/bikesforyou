@@ -3,10 +3,13 @@ require_once ('class.article.php');
 
 $articleObj = new ARTICLE();
 
+//get the newest 4 articles posted in the database (used on home page)
+
 $stmt = $articleObj->runQuery("SELECT * FROM articles ORDER BY articleId DESC LIMIT 4");
 $stmt->execute();
 $results = $stmt->fetchAll();
 
+//print the articles received in $result
 
 foreach($results as $row){
 

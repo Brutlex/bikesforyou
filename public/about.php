@@ -2,8 +2,13 @@
 session_start();
 require_once 'class.user.php'
 ;
+
+//initialize objects
+
 $user_home = new USER();
 $user_login = new USER();
+
+//support for login button in navbar, allows user to login with data entered
 
 if(isset($_POST['btn-login']))
 {
@@ -14,6 +19,9 @@ if(isset($_POST['btn-login']))
         $user_login->redirect('/');
     }
 }
+
+//get data of the logged in user
+
 $stmt = $user_home->runQuery("SELECT * FROM users WHERE userId=:uid");
 $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -35,6 +43,9 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     <?php include_once("analyticstracking.php") ?>
     <div>
         <?php
+
+        //include different navbar if user is logged in or not
+
         if(!$user_home->is_logged_in()){
             require_once 'tags/navbar.php';
         }

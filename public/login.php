@@ -1,12 +1,19 @@
 <?php
 session_start();
 require_once 'class.user.php';
+
+//initialize objects
+
 $user_login = new USER();
+
+//check if already logged in
 
 if($user_login->is_logged_in()!="")
 {
     $user_login->redirect('/');
 }
+
+//support for login button in navbar, allows user to login with data entered
 
 if(isset($_POST['btn-login']))
 {
@@ -26,6 +33,9 @@ if(isset($_POST['btn-login']))
         $user_login->redirect('login?ref=incorrect');
     }
 }
+
+//set different messages for user based on the page they came from ("ref" value passed by get method)
+
 if(!isset($_GET['ref'])){
     $msg = "<div class='alert alert-info'>
                     <button class='close' data-dismiss='alert'>&times;</button>
@@ -71,6 +81,9 @@ else{
 <div class="container cont-msg">
 
 <?php
+
+    //print the message previously set
+
     echo $msg;
 ?>
 <div class="panel panel-default">

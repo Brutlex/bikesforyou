@@ -1,10 +1,16 @@
 <?php
 
+//main class containing basic functions for handling articles such as search and article posting
+
 require_once 'config.php';
 
 class ARTICLE
 {
+    //initialize the connection variable
+
     private $conn;
+
+    //constructor function, established database connections using the Database class, executed every time on include
 
     public function __construct()
     {
@@ -13,17 +19,24 @@ class ARTICLE
         $this->conn = $db;
     }
 
+    //prepares the query given in the $sql parameter for execution with PDO, query still needs to have variables bound and be executed
+
     public function runQuery($sql)
     {
         $stmt = $this->conn->prepare($sql);
         return $stmt;
     }
 
+    //gets the last id set in the table with id set on auto increment, PDO function
+
     public function lastID()
     {
         $stmt = $this->conn->lastInsertId();
         return $stmt;
     }
+
+    //executes the search with the given parameters as the search filters
+    //returns a two dimensional array containing all the result rows matching the search query
 
     public function search($article_name, $category, $price_from, $price_to, $colour, $material, $brand)
     {
@@ -53,6 +66,10 @@ class ARTICLE
         }
     }
 
+    //executes the posting of a new article with the input parameters being the article data from the post form
+    //inserts a new row in the articles table with the data in the parameters
+    //returns a boolean telling if post was executed well or not
+
     public function post($userId, $articleName, $articleDescription, $category, $material, $frameSize, $price, $brand, $colour)
     {
         try {
@@ -74,6 +91,12 @@ class ARTICLE
             echo $ex->getMessage();
         }
     }
+
+    //uploads the image from the post an article form, image name is changed to a unique timestamp before upload to avoid same name images
+    //parameters passed are the file set for upload, and criteria for updating the value of the column
+    //checks if file is an image, image size, and extension
+    //if everything is ok, saves the image in the given directory and updates the picture column with the name of the image
+    //returns boolean for success/failed
 
     public function upload($file, $uid, $price, $articleName)
     {
@@ -125,6 +148,8 @@ class ARTICLE
             }
         }
     }
+
+    //function that prints the html code containing all the data passed in the parameters
 
     public function printArticle($picture, $articleName, $authorName, $price)
     {

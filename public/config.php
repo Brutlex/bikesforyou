@@ -1,5 +1,7 @@
 <?php
 
+//main configuration file containing details for establishing database connection
+
 class Database
 {
 
@@ -8,6 +10,8 @@ class Database
     private $username = "bikesforyou_at";
     private $password = "verynoobs";
     public $conn;
+
+    //function which establishes the connection, mainly called in __construct of other classes
 
     public function dbConnection()
     {
