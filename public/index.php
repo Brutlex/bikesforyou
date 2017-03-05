@@ -55,10 +55,10 @@ if ($user_home->is_logged_in()) {
                         <div class="input-group stylish-input-group">
                             <input type="text" id="textInput" class="form-control" name="searchbar"  placeholder="Search by article name" pattern="[^'\x22]+" title="Cannot contain apostrophes"  >
                             <span class="input-group-addon">
-                        <button type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
+                                <button type="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -93,14 +93,14 @@ if ($user_home->is_logged_in()) {
                                 <div class="form-group">
                                     <label for="pricefrom" class="control-label">Min Price</label>
                                     <div class="input-group">
-                                        <div class="input-group-addon" id="basic-addon1">€</div>
+                                        <div class="input-group-addon" id="basic-addon1"><span>€</span></div>
                                         <input type="number" name="price_from" min="0" max="5000" value="0" class="form-control" id="pricefrom" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="priceto" class="control-label">Max Price</label>
                                     <div class="input-group">
-                                        <div class="input-group-addon" id="basic-addon2">€</div>
+                                        <div class="input-group-addon" id="basic-addon2"><span>€</span></div>
                                         <input type="number" name="price_to" min="0" max="5000" value="5000" class="form-control" id="priceto" aria-describedby="basic-addon1">
                                     </div>
                                 </div>

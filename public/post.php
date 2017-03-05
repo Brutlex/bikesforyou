@@ -14,7 +14,7 @@ $stmt = $user_home->runQuery("SELECT * FROM users WHERE userId=:uid");
 $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if(isset($_POST['postIt'])) {
+if(isset($_POST['btn-post'])) {
     $userId = $_SESSION['userSession'];
     $articleName = $_POST['articleName'];
     $articleDescription = $_POST['articleDescription'];
@@ -24,6 +24,7 @@ if(isset($_POST['postIt'])) {
     $price = $_POST['price'];
     $brand1 = trim($_POST['brand']);
     $colour = trim($_POST['colour']);
+    $file = $_FILES['photoUpload'];
 
 
     if ($articleObj->post($userId, $articleName, $articleDescription, $category, $material, $frameSize, $price, $brand1, $colour)) {
@@ -31,9 +32,28 @@ if(isset($_POST['postIt'])) {
         $msg = "     
                     <div class='alert alert-success'>
                     <button class='close' data-dismiss='alert'>&times;</button>
-                    <strong>Success!</strong>  Your post has been created. 
+                    <strong>Success!</strong>  Your article has been created. 
                     </div>
                     ";
+
+        if(isset($file)) {
+
+            if ($articleObj->upload($file, $userId, $price, $articleName)) {
+                $msg_upload = "     
+                    <div class='alert alert-success'>
+                    <button class='close' data-dismiss='alert'>&times;</button>
+                    Photo uploaded. 
+                    </div>
+                    ";
+            } else {
+                $msg_upload = "     
+                    <div class='alert alert-danger'>
+                    <button class='close' data-dismiss='alert'>&times;</button>
+                    Invalid file. 
+                    </div>
+                    ";
+            }
+        }
     }
 }
 ?>
@@ -55,135 +75,119 @@ if(isset($_POST['postIt'])) {
     <?php require_once 'tags/navmembers.php'; ?>
 </div>
 
-<div class="col-lg-2"></div>
 
-<div class="container col-lg-8" id="postform">
-    <div class="col-md-6">
+<div class="container cont-msg">
 
-    <form class="form-horizontal" method="post">
     <?php if(isset($msg)) {
+
+        echo "<script>setTimeout(\"location.href = 'http://www.bikesforyou.at';\",3000);</script>";
+
         echo $msg;
-    } ?>
-            <h2><strong>Post an article</strong></h2>
-            <legend class="col-form-legend col-sm-12"></legend>
+    }
+    if(isset($msg_upload)){
+        echo $msg_upload;
+    }?>
 
-                <div class="container-fluid" id="form-label">
+    <div class="panel panel-default ">
+        <div class="panel-body" >
 
-                    <div class="form-group">
-                        <label for="articleName" class="col-form-label col-sm-8">Article name:</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" name="articleName" placeholder="Enter article name" required>
-                            </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="articleName" class="col-form-label col-sm-8">Article description:</label>
-                        <div class="col-sm-12">
-                            <input style="height:100px ;" type="text" class="form-control" name="articleDescription" placeholder="Enter article description" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="category" class="col-form-label col-sm-8">Category:</label>
-                        <div class="col-sm-12">
-                            <select class="form-control" name="category" required>
-                                <option value="" disabled selected>Select your option</option>
-                                <option value="Mountainbike">Mountainbike</option>
-                                <option value="City bike">City bike</option>
-                                <option value="Trekkingbike">Trekkingbike</option>
-                                <option value="Road bike">Road bike</option>
-                                <option value="Kids bike">Kids bike</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
+            <div class="form-group col-lg-6 col-lg-offset-3" >
+                <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                    <div class="text-center">
+                        <h3>Post an article</h3>
                     </div>
 
-                    <div class="form-group">
-                        <label for="material" class="col-form-label col-sm-8">Material:</label>
-                        <div class="col-sm-12">
-                            <select class="form-control" name="material" >
-                                <option value="" disabled selected>Select your option</option>
-                                <option value="Steel">Steel</option>
-                                <option value="Aluminium">Aluminium</option>
-                                <option value="Carbon">Carbon</option>
-                                <option value="Titanium">Titanium</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
+                    <hr/>
+
+                    <label for="articleName" class="control-label">Article name</label>
+                    <div class="input-group col-lg-12 form-padding">
+                        <input type="text" class="form-control" name="articleName" placeholder="Enter article name" required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="frameSize" class="col-form-label col-sm-8">Frame size:</label>
-                        <div class="col-sm-12">
-                            <select class="form-control" name="frameSize">
-                                <option value="" disabled selected>Select your option</option>
-                                <option value="s">S</option>
-                                <option value="m">M</option>
-                                <option value="l">L</option>
-                                <option value="xl">XL</option>
-                                <option value="xxl">XXL</option>
-                            </select>
-                        </div>
+                    <label for="articleDescription" class="control-label">Article description</label>
+                    <div class="input-group col-lg-12 form-padding">
+                        <input type="text" class="form-control" name="articleDescription" placeholder="Enter detailed article description" required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="price" class="col-form-label col-sm-8">Price:</label>
-                        <div class="col-sm-12">
-                            <input type="number" class="form-control" name="price" placeholder="Enter price" min="0" max="5000" required>
-                        </div>
+                    <label for="category" class="control-label">Category</label>
+                    <div class="input-group col-lg-12 form-padding">
+                        <select class="form-control" name="category" id="category" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Mountainbike">Mountainbike</option>
+                            <option value="City bike">City bike</option>
+                            <option value="Trekkingbike">Trekkingbike</option>
+                            <option value="Road bike">Road bike</option>
+                            <option value="Kids bike">Kids bike</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
 
-
-                    <div class="form-group">
-                        <label for="brand" class="col-form-label col-sm-8">Brand:</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" name="brand" placeholder="Enter brand name">
-                        </div>
+                    <label for="brand" class="control-label">Brand</label>
+                    <div class="input-group col-lg-12 form-padding">
+                        <input type="text" name="brand" class="form-control" id="brand" placeholder="Enter bicycle brand">
                     </div>
 
-                    <div class="form-group">
-                        <label for="colour" class="col-form-label col-sm-8">Colour:</label>
-                        <div class="col-sm-12">
-                            <select class="form-control" name="colour" >
-                                <option value="" disabled selected>Select your option</option>
-                                <option value="Black">black</option>
-                                <option value="White">white</option>
-                                <option value="Green">green</option>
-                                <option value="Yellow">yellow</option>
-                                <option value="Red">red</option>
-                                <option value="Blue">blue</option>
-                                <option value="Other">other</option>
-                            </select>
-                        </div>
+                    <label for="price" class="control-label">Price:</label>
+                    <div class="input-group col-lg-12 form-padding">
+                        <input type="number" class="form-control" name="price" placeholder="Enter price" min="0" max="5000" required>
+                        <div class="input-group-addon" id="basic-addon"><span>€</span></div>
                     </div>
 
+                    <label for="material" class="control-label">Frame material</label>
+                    <div class="input-group col-lg-12 form-padding">
+                        <select class="form-control" name="material" id="material">
+                            <option value="" disabled selected>Select</option>
+                            <option value="Steel">Steel</option>
+                            <option value="Aluminium">Aluminium</option>
+                            <option value="Carbon">Carbon</option>
+                            <option value="Titanium">Titanium</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
 
+                    <label for="colour" class="control-label">Colour</label>
+                    <div class="input-group col-lg-12 form-padding">
+                        <select class="form-control" name="colour" id="colour">
+                            <option value="" disabled selected>Select</option>
+                            <option value="Black">Black</option>
+                            <option value="White">White</option>
+                            <option value="Red">Red</option>
+                            <option value="Yellow">Yellow</option>
+                            <option value="Blue">Blue</option>
+                            <option value="Green">Green</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
 
+                    <label for="frameSize" class="control-label">Frame size</label>
+                    <div class="input-group col-lg-12 form-padding">
+                        <select class="form-control" name="frameSize" id="frameSize">
+                            <option value="" disabled selected>Select</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
 
+                    <label for="photo" id="photoUpload"class="control-label">Upload a bicycle photo</label>
+                    <div class="input-group form-padding">
+                        <input type="file" name="photoUpload" id="photoUpload">
+                    </div>
 
+                    <div class="form-group form-padding">
+                        <button class="btn btn btn-primary btn-block" id="post-submit" type="submit" name="btn-post">Submit</button>
+                    </div>
 
-
-                </div>
-        <button class="btn btn-primary pull-right" type="submit" name="postIt">Post it</button>
-    </form>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <div class="col-md-6">
-        <div class="container-fluid">
-
-        </div>
-        <div class="container">
-            <label class="control-label">Select Photo</label>
-            <input id="input" name="input" type="file" multiple class="file-loading">
-
-
-
-        </div>
-
-    </div>
 
 </div>
 
-
-<div class="col-lg-2"></div>
 
 
 </body>

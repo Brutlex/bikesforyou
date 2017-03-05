@@ -48,8 +48,8 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     <div id="email" class="container text-center">
         <div class="panel panel-default">
             <div class="panel-body" >
-                <h1>Fragen & Support</h1>
-                <p>Wenn Sie Fragen haben oder unsere Hilfe brauchen, schreiben Sie uns eine Email an:</p>
+                <h1>Questions & Support</h1>
+                <p>If You have questions or need our help, write an email to:</p>
                 <a href="mailto:support@bikesforyou.at">support@bikesforyou.at</a>
             </div>
         </div>

@@ -105,13 +105,13 @@ if ($result == null){
 
 foreach($result as $row){
 
-
     $stmt = $articleObj->runQuery("SELECT * FROM users WHERE userId = :userId");
     $stmt->execute(array(":userId" => $row['userId']));
     $author = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $author_name = $author['userName'];
-
+    $articleName = $row['articleName'];
+    $price = $row['price'];
 
     $pic = "//img/articlePics/" . $row['picture'];
 
@@ -125,36 +125,15 @@ foreach($result as $row){
         $picture = $row['picture'];
     }
 
-    echo'<div class="container">';
-    echo '<div class="col-lg-1"></div>
-    <div class="col-lg-10">
-        <div class="panel panel-default">
-        <div class="panel-body">
-        <ul style="list-style: none">
-            <li>
-                <div class="container col-sm-4" >
-                    <img src="img/articlePics/' . $picture . ' " class="img-responsive">
-                </div>
-                <div class="col-sm-8">
-                    <div class="col-sm-8">
-                        <p>' . $row['articleName'] . '</p>
-                        <br>
-                        <br>
-                        <br>
-                        <p>posted by ' . $author_name . '</p>
-                    </div>
-                    <div class="col-sm-4">
-                        <h3 class="pull-right">'. $row['price'] .' &#8364;</h3>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        </div>
-        </div>
-    </div>
-    
-    <div class="col-lg-1"></div>';
-    echo '</div>';
+    echo'<div class="container">
+            <div class="col-lg-1"></div>
+                <div class="col-lg-10">';
+
+    $articleObj->printArticle($picture,$articleName,$author_name,$price);
+
+    echo'       </div>
+            <div class="col-lg-1"></div>
+        </div>';
 
 }
 echo '</div>';

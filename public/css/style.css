@@ -60,9 +60,9 @@ body {
     margin-top:15%;
 }
 .stylish-input-group .input-group-addon{
-    background: white !important;
+    background: #3385ff;
     border-color:#3385ff;
-    color:#3385ff;
+    color:white;
 }
 .stylish-input-group .form-control{
     border-right:0;
@@ -102,10 +102,10 @@ body {
     margin-bottom: 10px;
 }
 
-#reg-submit, #log-submit{
+#reg-submit, #log-submit, #post-submit, .cont-msg{
     margin-top:20px;
 }
-#lastName{
+#lastName, #photoUpload{
     margin-bottom:30px;
 }
 .img-responsive{

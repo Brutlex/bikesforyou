@@ -1,17 +1,34 @@
 <?php
 session_start();
 require_once 'class.user.php';
+require_once 'class.article.php';
+$user_login = new USER();
 $user_home = new USER();
+$articleObj = new ARTICLE;
 
-if(!$user_home->is_logged_in())
+if(isset($_POST['btn-login']))
 {
-    $user_home->redirect('/');
+    $uemail = trim($_POST['uemail']);
+    $upass = trim($_POST['upass']);
+
+    if($user_login->login($uemail,$upass))
+    {
+        $user_login->redirect('/');
+    }
 }
+
 
 $stmt = $user_home->runQuery("SELECT * FROM users WHERE userId=:uid");
 $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$stmtProfile = $user_home->runQuery("SELECT * FROM users WHERE userName=:uname");
+$stmtProfile->execute(array(":uname"=>$_GET['user']));
+$rowProfile = $stmtProfile->fetch(PDO::FETCH_ASSOC);
+
+if ($rowProfile=="" || !isset($_GET['user'])){
+    $user_home->redirect('/');
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,38 +40,42 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     <title>Profile</title>
 
 </head>
-<body id="members">
+<body id = "profile">
+<div id="members">
 <?php include_once("analyticstracking.php") ?>
 <div>
-    <?php require_once 'tags/navmembers.php'; ?>
+    <?php
+
+    if(!$user_home->is_logged_in()){
+        require_once 'tags/navbar.php';
+    }
+    else{
+        require_once 'tags/navmembers.php';
+    } ?>
 </div>
-<div>
+<div class="padding">
 <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="media">
                 <div align="center">
-                    <img class="thumbnail img-responsive" src="img/hackerman.jpg" width="200px" height="200px">
-                    <!---<a href="photoupload" class="btn btn-primary btn-info" style="background-color: #3385ff"><span class="glyphicon glyphicon-camera"></span></a>--->
-                </div>
+                    <img class="thumbnail img-responsive" src="img/hackerman.jpg" width="200px" height="200px"></div>
                 <div class="media-body">
                     <hr>
                     <h5><strong>First name</strong></h5>
-                    <p><?php echo $row['firstName']?></p>
+                    <p><?php echo $rowProfile['firstName']?></p>
                     <hr>
                     <h5><strong>Last name</strong></h5>
-                    <p><?php echo $row['lastName']?></p>
+                    <p><?php echo $rowProfile['lastName']?></p>
                     <hr>
                     <h5><strong>Location</strong></h5>
-                    <p><?php echo $row['city']?></p>
+                    <p><?php echo $rowProfile['city']?></p>
                     <hr>
                     <h5><strong>Gender</strong></h5>
-                    <p><?php echo $row['sex']?></p>
+                    <p><?php echo $rowProfile['sex']?></p>
                     <hr>
                     <h5><strong>Email</strong></h5>
-                    <p><?php echo $row['userEmail']?></p>
-                    <hr>
-                    <button class="btn btn-primary pull-right" type="submit" name="updateProfile">Update</button>
+                    <p><?php echo $rowProfile['userEmail']?></p>
                 </div>
             </div>
         </div>
@@ -62,28 +83,43 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 </div>
 <div class="col-lg-9">
     <div class="container" style="color: #3385ff;padding-bottom: 20px; padding-top: 10px; padding-left:0px ">
-        <h2><strong><?php echo $row['userName']; ?></strong></h2>
+        <h2><strong><?php echo $rowProfile['userName']; ?></strong></h2>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-body ">
-            <h3 style="padding-bottom:20px; padding-left: 10px"><strong>Meine Inserate</strong></h3>
-            <div class="col-md-4">
-                <img src="#" class="thumbnail" width="283" height="230">
-                <hr>
-                <img src="#" class="thumbnail" width="283" height="230">
-            </div>
-            <div class="col-md-4">
-                <img src="#" class="thumbnail" width="283" height="230">
-                <hr>
-                <img src="#" class="thumbnail" width="283" height="230">
-            </div>
-            <div class="col-md-4">
-                <img src="#" class="thumbnail" width="283" height="230">
-                <hr>
-                <img src="#" class="thumbnail" width="283" height="230">
-            </div>
-        </div>
-    </div>
+
+    <?php
+        $stmtPosts = $articleObj->runQuery("SELECT * FROM articles WHERE userId =:uid");
+        $stmtPosts->execute(array(":uid"=>$rowProfile['userId']));
+        $results = $stmtPosts->fetchAll();
+
+        if ($results == null){
+            echo "<div class=\"jumbotron\">
+                <h1 align='center'>No articles found :(</h1>      
+                </div>";
+        }
+            foreach($results as $row2) {
+
+
+                $stmt = $articleObj->runQuery("SELECT * FROM users WHERE userId = :userId");
+                $stmt->execute(array(":userId" => $row2['userId']));
+                $author = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                $authorName = $author['userName'];
+                $articleName = $row2['articleName'];
+                $price = $row2['price'];
+
+                $pic = "//img/articlePics/" . $row2['picture'];
+
+                if ($row2['picture'] == "") {
+                    $picture = "default.png";
+                } else if (file_exists($pic)) {
+                    $picture = $row2['picture'];
+                } else {
+                    $picture = $row2['picture'];
+                }
+                $articleObj->printArticle($picture,$articleName,$authorName,$price);
+            }
+    ?>
+</div>
 </div>
 </div>
 </body>

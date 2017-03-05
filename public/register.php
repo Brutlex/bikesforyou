@@ -45,32 +45,29 @@ if(isset($_POST['btn-signup'])) {
     $row2 = $stmt2->fetch(PDO::FETCH_ASSOC);
 
     if ($stmt->rowCount() > 0) {
-        $msg_err = "<div class=\"padding\">
-        <div class='alert alert-danger'>
-    <button class='close' data-dismiss='alert'>&times;</button>
-     <strong>Email</strong> is already registered. Please log in or choose another one.
-     </div>
-     </div>
-     ";
+        $msg_err = "
+                    <div class='alert alert-danger'>
+                        <button class='close' data-dismiss='alert'>&times;</button>
+                        <strong>Email</strong> is already registered. Please log in or choose another one.
+                    </div>
+                    ";
     }
     elseif ($stmt2->rowCount() > 0) {
-        $msg_err = "<div class=\"padding\">
-        <div class='alert alert-danger'>
-    <button class='close' data-dismiss='alert'>&times;</button>
-     <strong>Username</strong> is already in use. Please choose another one.
-     </div>
-     </div>
-     ";
+        $msg_err = "
+                    <div class='alert alert-danger'>
+                        <button class='close' data-dismiss='alert'>&times;</button>
+                        <strong>Username</strong> is already in use. Please choose another one.
+                    </div>
+                    ";
     }
      elseif ($upass!= $upass2)
         {
-            $msg_err = "<div class=\"padding\">
-        <div class='alert alert-danger'>
-    <button class='close' data-dismiss='alert'>&times;</button>
-     <strong>Passwords</strong> do not match. Please try again.
-     </div>
-     </div>
-     ";
+            $msg_err = "
+                        <div class='alert alert-danger'>
+                            <button class='close' data-dismiss='alert'>&times;</button>
+                            <strong>Passwords</strong> do not match. Please try again.
+                        </div>
+                        ";
 
     }
 
@@ -109,11 +106,10 @@ if(isset($_POST['btn-signup'])) {
 
             $reg_user->login($uemail,$upass);
 
-            $msg = "<div class=\"padding\">     
+            $msg = "
                     <div class='alert alert-success'>
-                    <button class='close' data-dismiss='alert'>&times;</button>
-                    <strong>Success!</strong>  Your account has been created. You will be redirected back to the home page. If it doesn't work <a href=\"home\" class=\"alert-link\">click here</a>. 
-                    </div>
+                        <button class='close' data-dismiss='alert'>&times;</button>
+                        <strong>Success!</strong>  Your account has been created. You will be redirected back to the home page. If it doesn't work <a href=\"home\" class=\"alert-link\">click here</a>. 
                     </div>
                     ";
 
@@ -137,7 +133,7 @@ if(isset($_POST['btn-signup'])) {
         <div>
             <?php require_once 'tags/navbar.php'; ?>
         </div>
-        <div class="container col-lg-6 col-lg-offset-3">
+        <div class="container cont-msg col-lg-6 col-lg-offset-3">
 
             <?php if(isset($msg)) {
                 echo "<script>setTimeout(\"location.href = 'http://www.bikesforyou.at';\",5000);</script>";
@@ -147,7 +143,7 @@ if(isset($_POST['btn-signup'])) {
                 echo $msg_err;
             }?>
 
-        <div class="padding">
+
             <div class="panel panel-default ">
                 <div class="panel-body" >
                     <div class="form-group col-lg-6 col-lg-offset-3" >
@@ -221,7 +217,6 @@ if(isset($_POST['btn-signup'])) {
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </body>
 </html>

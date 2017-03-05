@@ -16,6 +16,8 @@ foreach($results as $row){
     $author = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $author_name = $author['userName'];
+    $articleName = $row['articleName'];
+    $price = $row['price'];
 
     $pic = "//img/articlePics/" . $row['picture'];
 
@@ -30,31 +32,6 @@ foreach($results as $row){
     }
 
 
-    echo '
-        <div class="panel panel-default">
-        <div class="panel-body">
-        <ul style="list-style: none">
-            <li>
-                <div class="container col-sm-4" >
-                    <img src="img/articlePics/' . $picture . ' " class="img-responsive">
-                </div>
-                <div class="col-sm-8">
-                    <div class="col-sm-8">
-                        <p>' . $row['articleName'] . '</p>
-                        <br>
-                        <br>
-                        <br>
-                        <p>posted by ' . $author_name . '</p>
-                    </div>
-                    <div class="col-sm-4">
-                        <h3 class="pull-right">'. $row['price'] .' &#8364;</h3>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        </div>
-        </div>
-    
-';
+    $articleObj->printArticle($picture,$articleName,$author_name,$price);
 }
 ?>

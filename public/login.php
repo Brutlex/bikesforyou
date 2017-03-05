@@ -15,7 +15,12 @@ if(isset($_POST['btn-login']))
 
     if($user_login->login($uemail,$upass))
     {
-        $user_login->redirect('/');
+        if ($_GET['ref'] == "post"){
+            $user_login->redirect('post');
+        }
+        else {
+            $user_login->redirect('/');
+        }
     }
     else{
         $user_login->redirect('login?ref=incorrect');
@@ -63,7 +68,7 @@ else{
     <?php require_once 'tags/navbar.php'; ?>
 </div>
 
-<div class="container" style="margin-top:20px;">
+<div class="container cont-msg">
 
 <?php
     echo $msg;
